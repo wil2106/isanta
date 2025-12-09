@@ -33,6 +33,10 @@
         .accent {
             color: #D62626;
         }
+        
+        .bold {
+            font-weight: 800;
+        }
     </style>
 </head>
 <body>
@@ -58,24 +62,24 @@
             invitation = `Something went wrong`;
         } else if (ln === 'fr') {
             // French version
-            let locationPart = l ? ` à ${l}` : '';
-            let datePart = d ? ` le ${d}` : '';
-            let budgetPart = b ? `Le budget est ${b}.<br><br>` : '';
+            let locationPart = l ? ` à <span class="accent">${l}</span>` : '';
+            let datePart = d ? ` le <span class="accent">${d}</span>` : '';
+            let budgetPart = b ? `Le budget est <span class="accent">${b}</span>.<br><br>` : '';
             
-            invitation = `Bonjour ${r},<br><br>
-Vous avez été invité pour le Secret Santa "${t}"${locationPart}${datePart}.<br><br>
-Vous êtes assigné à offrir un cadeau à <span class="accent">${a}</span>.<br><br>
-${budgetPart}Organisateur: ${o}`;
+            invitation = `Bonjour <span class="accent">${r}</span>,<br><br>
+Vous avez été invité pour le Secret Santa "<span class="accent">${t}</span>"${locationPart}${datePart}.<br><br>
+Vous êtes assigné à offrir un cadeau à <span class="accent bold">${a}</span>.<br><br>
+${budgetPart}Organisateur: <span class="accent">${o}</span>`;
         } else {
             // English version (default)
-            let locationPart = l ? ` at ${l}` : '';
-            let datePart = d ? ` on ${d}` : '';
-            let budgetPart = b ? `The budget is ${b}.<br><br>` : '';
+            let locationPart = l ? ` at <span class="accent">${l}</span>` : '';
+            let datePart = d ? ` on <span class="accent">${d}</span>` : '';
+            let budgetPart = b ? `The budget is <span class="accent">${b}</span>.<br><br>` : '';
             
-            invitation = `Hello ${r},<br><br>
-You have been invited to the Secret Santa "${t}"${locationPart}${datePart}.<br><br>
-You are assigned to give a gift to <span class="accent">${a}</span>.<br><br>
-${budgetPart}Organizer: ${o}`;
+            invitation = `Hello <span class="accent">${r}</span>,<br><br>
+You have been invited to the Secret Santa "<span class="accent">${t}</span>"${locationPart}${datePart}.<br><br>
+You are assigned to give a gift to <span class="accent bold">${a}</span>.<br><br>
+${budgetPart}Organizer: <span class="accent">${o}</span>`;
         }
         
         document.getElementById('invitation').innerHTML = invitation;
