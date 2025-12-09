@@ -45,16 +45,28 @@
     </div>
     
     <script>
-        // Get URL parameters
+        function decode(encoded) {
+            if (!encoded) return '';
+            return encoded.split('').map(charEncoded => {
+                if (/[a-z]/.test(charEncoded)) {
+                    const charCodeNormalized = charEncoded.charCodeAt(0) - 97;
+                    const charCodeDecodedNormalized = (charCodeNormalized + 10 + 26) % 26;
+                    const charCodeDecoded = charCodeDecodedNormalized + 97;
+                    const charDecoded = String.fromCharCode(charCodeDecoded)
+                    return charDecoded
+                }
+                return char;
+            }).join('');
+        }
         const params = new URLSearchParams(window.location.search);
         const ln = params.get('ln') || 'en';
-        const r = params.get('r') || '';
-        const t = params.get('t') || '';
-        const l = params.get('l') || '';
-        const d = params.get('d') || '';
-        const a = params.get('a') || '';
-        const b = params.get('b') || '';
-        const o = params.get('o') || '';
+        const r = decode(params.get('r'));
+        const t = decode(params.get('t'));
+        const l = decode(params.get('l'));
+        const d = decode(params.get('d'));
+        const a = decode(params.get('a'));
+        const b = decode(params.get('b'));
+        const o = decode(params.get('o'));
         
         let invitation;
         
