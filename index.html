@@ -54,14 +54,16 @@
         
         let invitation;
         
-        if (ln === 'fr') {
+        if (r === ''  || t === '' || a === '' || o === ''){
+            invitation = `Something went wrong`;
+        } else if (ln === 'fr') {
             // French version
             let locationPart = l ? ` à ${l}` : '';
             let datePart = d ? ` le ${d}` : '';
             let budgetPart = b ? `Le budget est ${b}.<br><br>` : '';
             
             invitation = `Bonjour ${r},<br><br>
-Vous avez été invité pour le Secret Santa ${t}${locationPart}${datePart}.<br><br>
+Vous avez été invité pour le Secret Santa "${t}"${locationPart}${datePart}.<br><br>
 Vous êtes assigné à offrir un cadeau à <span class="accent">${a}</span>.<br><br>
 ${budgetPart}Organisateur: ${o}`;
         } else {
@@ -71,7 +73,7 @@ ${budgetPart}Organisateur: ${o}`;
             let budgetPart = b ? `The budget is ${b}.<br><br>` : '';
             
             invitation = `Hello ${r},<br><br>
-You have been invited to the Secret Santa ${t}${locationPart}${datePart}.<br><br>
+You have been invited to the Secret Santa "${t}"${locationPart}${datePart}.<br><br>
 You are assigned to give a gift to <span class="accent">${a}</span>.<br><br>
 ${budgetPart}Organizer: ${o}`;
         }
