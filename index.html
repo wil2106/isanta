@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Santa Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            background-color: #F3EAD1;
+            color: #134139;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            text-align: center;
+            padding: 40px;
+            max-width: 600px;
+        }
+        
+        .invitation {
+            line-height: 1.8;
+            font-size: 18px;
+        }
+        
+        .accent {
+            color: #D62626;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="invitation" id="invitation"></div>
+    </div>
+    
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const ln = params.get('ln') || 'en';
+        const r = params.get('r') || '';
+        const t = params.get('t') || '';
+        const l = params.get('l') || '';
+        const d = params.get('d') || '';
+        const a = params.get('a') || '';
+        const b = params.get('b') || '';
+        const o = params.get('o') || '';
+        
+        let invitation;
+        
+        if (ln === 'fr') {
+            // French version
+            let locationPart = l ? ` à ${l}` : '';
+            let datePart = d ? ` le ${d}` : '';
+            let budgetPart = b ? `Le budget est ${b}.<br><br>` : '';
+            
+            invitation = `Bonjour ${r},<br><br>
+Vous avez été invité pour le Secret Santa ${t}${locationPart}${datePart}.<br><br>
+Vous êtes assigné à offrir un cadeau à <span class="accent">${a}</span>.<br><br>
+${budgetPart}Organisateur: ${o}`;
+        } else {
+            // English version (default)
+            let locationPart = l ? ` at ${l}` : '';
+            let datePart = d ? ` on ${d}` : '';
+            let budgetPart = b ? `The budget is ${b}.<br><br>` : '';
+            
+            invitation = `Hello ${r},<br><br>
+You have been invited to the Secret Santa ${t}${locationPart}${datePart}.<br><br>
+You are assigned to give a gift to <span class="accent">${a}</span>.<br><br>
+${budgetPart}Organizer: ${o}`;
+        }
+        
+        document.getElementById('invitation').innerHTML = invitation;
+    </script>
+</body>
+</html>
